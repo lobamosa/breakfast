@@ -7,8 +7,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/api
-    depends_on:
-      - postgres
     ports:
       - "3000:3000"
     env_file: 
@@ -17,18 +15,6 @@ services:
       RAILS_ENV: development
     networks:
         social:
-  postgres:
-    container_name: postgres
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: social
-    labels:
-        - "traefik.enable=true"
-    networks:
-      social:
 networks:
     social:
       external:
